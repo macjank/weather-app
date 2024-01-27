@@ -1,9 +1,15 @@
-import { useTranslation } from 'react-i18next';
+import { QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { queryClient } from './queryClient';
 
 const App = () => {
-  const { t } = useTranslation();
+  return (
+    <QueryClientProvider client={queryClient}>
+      <div>test</div>
 
-  return <div>{t('test')}</div>;
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
+  );
 };
 
 export default App;
