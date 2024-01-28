@@ -15,8 +15,10 @@ module.exports = {
 
         borderPrimary: '#797979',
 
-        textPrimary: '#fdfdfd',
-        textSecondary: '#040501',
+        textPrimary: '#040501',
+        textSecondary: '#fdfdfd',
+
+        textTertiary: '#797979',
         textDisabled: '#797979',
       },
     },

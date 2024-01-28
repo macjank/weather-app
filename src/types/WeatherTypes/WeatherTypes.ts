@@ -18,6 +18,7 @@ export interface ICurrentWeather {
     region: string;
     coordinates: Coordinates;
     localTime: Date;
+    country: string;
   };
   current: {
     lastUpdated: Date;

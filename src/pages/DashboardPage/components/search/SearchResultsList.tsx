@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
-import LoadingSpinner from '../../../components/loadingSpinners/LoadingSpinner';
-import { ISearchResult } from '../../../types/WeatherTypes/WeatherTypes';
+import LoadingSpinner from '../../../../components/loadingSpinners/LoadingSpinner';
+import { ISearchResult } from '../../../../types/WeatherTypes/WeatherTypes';
 
 interface SearchResultsListProps {
   results: ISearchResult[];

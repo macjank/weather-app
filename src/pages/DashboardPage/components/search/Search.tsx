@@ -1,10 +1,10 @@
 import { ChangeEvent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Input } from '../../../components/inputs/Input';
-import { useWeatherSearch } from '../../../hooks/api/useWeatherSearch';
-import { useDebounce } from '../../../hooks/useDebounce';
-import { useOnClickOutside } from '../../../hooks/useOnClickOutside';
-import { ISearchResult } from '../../../types/WeatherTypes/WeatherTypes';
+import { Input } from '../../../../components/inputs/Input';
+import { useWeatherSearch } from '../../../../hooks/api/useWeatherSearch';
+import { useDebounce } from '../../../../hooks/useDebounce';
+import { useOnClickOutside } from '../../../../hooks/useOnClickOutside';
+import { ISearchResult } from '../../../../types/WeatherTypes/WeatherTypes';
 import SearchResultsList from './SearchResultsList';
 
 const ID = 'search-results';

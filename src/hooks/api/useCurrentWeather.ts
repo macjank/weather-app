@@ -13,6 +13,7 @@ interface ApiCurrentWeather {
     lat: number;
     lon: number;
     localtime: string;
+    country: string;
   };
   current: {
     last_updated: string;
@@ -54,6 +55,7 @@ export const useCurrentWeather = ({ placeId, enabled }: { placeId: number; enabl
             lng: apiCurrentWeather.location.lon,
           },
           localTime: new Date(apiCurrentWeather.location.localtime),
+          country: apiCurrentWeather.location.country,
         },
         current: {
           lastUpdated: new Date(apiCurrentWeather.current.last_updated),

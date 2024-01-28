@@ -4,5 +4,14 @@
       "placeholder": "Szukaj",
       "noResults": "Brak wyników"
     }
+  },
+  "weekdays": {
+    "SUNDAY": "Niedziela",
+    "MONDAY": "Poniedziałek",
+    "TUESDAY": "Wtorek",
+    "WEDNESDAY": "Środa",
+    "THURSDAY": "Czwartek",
+    "FRIDAY": "Piątek",
+    "SATURDAY": "Sobota"
   }
 }
