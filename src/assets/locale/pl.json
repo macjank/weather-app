@@ -1,7 +1,8 @@
 {
   "dashboard": {
     "search": {
-      "placeholder": "Szukaj"
+      "placeholder": "Szukaj",
+      "noResults": "Brak wyników"
     }
   }
 }

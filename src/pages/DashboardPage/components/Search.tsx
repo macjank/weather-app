@@ -3,7 +3,11 @@ import { useTranslation } from 'react-i18next';
 import { Input } from '../../../components/inputs/Input';
 import { useWeatherSearch } from '../../../hooks/api/useWeatherSearch';
 import { useDebounce } from '../../../hooks/useDebounce';
+import { useOnClickOutside } from '../../../hooks/useOnClickOutside';
 import { ISearchResult } from '../../../types/WeatherTypes/WeatherTypes';
+import SearchResultsList from './SearchResultsList';
+
+const ID = 'search-results';
 
 interface SearchProps {
   onSelectPlace: (place: ISearchResult) => void;
@@ -15,36 +19,31 @@ const Search = ({ onSelectPlace }: SearchProps) => {
   const [searchValue, setSearchValue] = useState('');
   const { debouncedValue: debouncedSearchValue } = useDebounce({ value: searchValue, delay: 400 });
 
-  const { searchResults } = useWeatherSearch({ searchQuery: debouncedSearchValue });
+  const { searchResults, isLoading } = useWeatherSearch({ searchQuery: debouncedSearchValue });
+
+  const [isResultListOpen, setIsResultListOpen] = useState(false);
 
   const handleChangeSearchValue = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value);
   };
 
-  const handleOptionClick = (result: ISearchResult) => {
+  const handleSelectResult = (result: ISearchResult) => {
     onSelectPlace(result);
+    setIsResultListOpen(false);
   };
 
-  return (
-    <div className="relative">
-      <Input placeholder={t('dashboard.search.placeholder')} value={searchValue} onChange={handleChangeSearchValue} />
-      {/* //TODO: move to separate components */}
-      {!!searchResults.length && (
-        <ul className="absolute bg-white w-full border border-borderPrimary rounded-md top-full mt-2">
-          {searchResults.map((result, index) => {
-            const isFirst = index === 0;
+  useOnClickOutside({ targetId: ID, onClick: () => setIsResultListOpen(false) });
 
-            return (
-              <li
-                key={result.id}
-                onClick={() => handleOptionClick(result)}
-                className={`px-4 py-4 text-sm ${!isFirst && 'border-t border-t-borderPrimary'}`}
-              >
-                {result.name}
-              </li>
-            );
-          })}
-        </ul>
+  return (
+    <div id={ID} className="relative">
+      <Input
+        placeholder={t('dashboard.search.placeholder')}
+        value={searchValue}
+        onChange={handleChangeSearchValue}
+        onClick={() => setIsResultListOpen(true)}
+      />
+      {isResultListOpen && (
+        <SearchResultsList results={searchResults} onSelectResult={handleSelectResult} isLoading={isLoading} />
       )}
     </div>
   );
