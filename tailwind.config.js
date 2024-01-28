@@ -13,7 +13,7 @@ module.exports = {
 
         bgPrimary: '#35597D',
 
-        inputBorder: '#797979',
+        borderPrimary: '#797979',
 
         textPrimary: '#fdfdfd',
         textSecondary: '#040501',
