@@ -3,8 +3,11 @@ import { useTranslation } from 'react-i18next';
 import { Input } from '../../../../components/inputs/Input';
 import { useWeatherSearch } from '../../../../hooks/api/useWeatherSearch';
 import { useDebounce } from '../../../../hooks/useDebounce';
+import { useOnClickOutside } from '../../../../hooks/useOnClickOutside';
 import { ISearchResult } from '../../../../types/WeatherTypes/WeatherTypes';
 import SearchResultsList from './SearchResultsList';
+
+const SEARCH_CONTAINER_ID = 'search-results';
 
 interface SearchProps {
   onSelectPlace: (place: ISearchResult) => void;
@@ -24,12 +27,20 @@ const Search = ({ onSelectPlace }: SearchProps) => {
     setSearchValue(e.target.value);
   };
 
-  const handleSelectResult = (result: ISearchResult) => {
-    onSelectPlace(result);
+  const handleResetSearchValue = () => {
+    setSearchValue('');
   };
 
+  const handleSelectResult = (result: ISearchResult) => {
+    onSelectPlace(result);
+    handleResetSearchValue();
+    setIsResultListOpen(false);
+  };
+
+  useOnClickOutside({ targetId: SEARCH_CONTAINER_ID, onClick: () => setIsResultListOpen(false) });
+
   return (
-    <div className="relative">
+    <div id={SEARCH_CONTAINER_ID} className="relative">
       <Input
         placeholder={t('dashboard.search.placeholder')}
         value={searchValue}
