@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next';
+import SecondaryButton from '../../../../components/common/SecondaryButton';
 import { ISearchResult } from '../../../../types/WeatherTypes/WeatherTypes';
 
 interface PrevSearchesProps {
@@ -12,16 +13,12 @@ const PrevSearches = ({ prevSearches, onSelect }: PrevSearchesProps) => {
   return (
     <div className="mt-6">
       <h6 className="text-sm text-textTertiary">{t('dashboard.prevSearches.title')}</h6>
-      <div className="mt-2 grid grid-cols-2 gap-2">
+      <div className="mt-2 grid grid-cols-2 gap-2 md:grid-cols-4">
         {prevSearches.map(search => {
           return (
-            <button
-              key={search.id}
-              onClick={() => onSelect(search)}
-              className="border border-borderPrimary px-4 py-2 rounded-md"
-            >
-              {search.name}
-            </button>
+            <SecondaryButton key={search.id} onClick={() => onSelect(search)} className="w-full">
+              {`${search.name}, ${search.country}`}
+            </SecondaryButton>
           );
         })}
       </div>

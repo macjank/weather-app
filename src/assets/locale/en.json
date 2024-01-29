@@ -1,5 +1,6 @@
 {
   "dashboard": {
+    "title": "Weather app",
     "search": {
       "placeholder": "Search",
       "noResults": "No results"
@@ -8,6 +9,8 @@
       "title": "Last searches"
     },
     "currentWeather": {
+      "feelsLikeWeather": "Real feel",
+      "noDataMessage": "No data to display. Use the search bar to view weather information",
       "chart": {
         "temperature": "Temperature",
         "humidity": "Humidity",

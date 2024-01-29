@@ -1,6 +1,6 @@
 import { ChangeEvent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Input } from '../../../../components/inputs/Input';
+import { Input } from '../../../../components/common/inputs/Input';
 import { useWeatherSearch } from '../../../../hooks/api/useWeatherSearch';
 import { useDebounce } from '../../../../hooks/useDebounce';
 import { useOnClickOutside } from '../../../../hooks/useOnClickOutside';
@@ -46,8 +46,12 @@ const Search = ({ onSelectPlace }: SearchProps) => {
         value={searchValue}
         onChange={handleChangeSearchValue}
         onFocus={() => setIsResultListOpen(true)}
-        onBlur={() => setIsResultListOpen(false)}
       />
+      {!!searchValue && (
+        <button onClick={handleResetSearchValue} className="absolute right-4 top-1/2 -translate-y-1/2">
+          X
+        </button>
+      )}
       {isResultListOpen && (
         <SearchResultsList results={searchResults} onSelectResult={handleSelectResult} isLoading={isLoading} />
       )}

@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { ICurrentWeather } from '../../../../../types/WeatherTypes/WeatherTypes';
 import { getWeekday } from '../../../../../utils/getWeekday.ts/getWeekday';
 import CurrentWeatherChart from './CurrentWeatherChart';
@@ -7,16 +8,19 @@ interface CurrentWeatherProps {
 }
 
 const CurrentWeather = ({ currentWeather }: CurrentWeatherProps) => {
+  const { t } = useTranslation();
+
   return (
     <div>
       <div className="mx-auto flex flex-col items-center mt-8 gap-6">
         <div>
-          <h1 className="text-2xl text-center">{currentWeather.location.name}</h1>
+          <h2 className="text-2xl text-center">{currentWeather.location.name}</h2>
           <h6 className="text-center text-sm text-textTertiary">{currentWeather.location.country}</h6>
         </div>
 
         <div>
-          <h2 className="text-8xl">{currentWeather.current.tempC}&deg;C</h2>
+          <h3 className=" text-center text-6xl md:text-8xl">{currentWeather.current.tempC}&deg;C</h3>
+          <p className=" text-center text-textTertiary text-xs">{`${t('dashboard.currentWeather.feelsLikeWeather')}: ${currentWeather.current.feelslikeC}°C`}</p>
         </div>
 
         <div className="flex gap-4">
@@ -26,8 +30,9 @@ const CurrentWeather = ({ currentWeather }: CurrentWeatherProps) => {
           </div>
 
           <div className="border-l border-borderPrimary pl-4 flex flex-col justify-center">
-            <p className="text-textTertiary text-base">{getWeekday(currentWeather.location.localTime)}</p>
-            <p className="text-textTertiary text-base">{currentWeather.location.localTime.toLocaleDateString()}</p>
+            <p className="text-textTertiary text-base font-bold">{getWeekday(currentWeather.location.localTime)}</p>
+            <p className="text-textTertiary text-sm">{currentWeather.location.localTime.toLocaleDateString()}</p>
+            <p className="text-textTertiary text-sm">{currentWeather.location.localTime.toLocaleTimeString()}</p>
           </div>
         </div>
       </div>

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useCurrentWeather } from '../../hooks/api/useCurrentWeather';
 import { LocalStorageValues } from '../../types/LocalStorageValues';
 import { ISearchResult } from '../../types/WeatherTypes/WeatherTypes';
@@ -16,8 +17,9 @@ const getInitialSelectedPlace = () => {
 };
 
 const DashboardPage = () => {
-  const [selectedPlace, setSelectedPlace] = useState<ISearchResult | null>(getInitialSelectedPlace());
+  const { t } = useTranslation();
 
+  const [selectedPlace, setSelectedPlace] = useState<ISearchResult | null>(getInitialSelectedPlace());
   const { prevSelectedPlaces, setPrevSelectedPlaces } = usePrevSelectedPlaces();
 
   const { currentWeather, isLoading, isError, errorMessage } = useCurrentWeather({
@@ -41,11 +43,13 @@ const DashboardPage = () => {
   };
 
   return (
-    <div className=" p-4">
+    <div>
+      <h1 className="text-center text-textPrimary mt-4 mb-6">{t('dashboard.title')}</h1>
       <Search onSelectPlace={handleChangeSelectedPlace} />
       {!!prevSelectedPlaces.length && (
         <PrevSearches prevSearches={prevSelectedPlaces} onSelect={handleChangeSelectedPlace} />
       )}
+
       <CurrentWeatherContainer
         currentWeather={currentWeather}
         isLoading={isLoading}

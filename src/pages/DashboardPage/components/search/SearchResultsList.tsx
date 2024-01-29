@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import LoadingSpinner from '../../../../components/loadingSpinners/LoadingSpinner';
+import LoadingSpinner from '../../../../components/common/loadingSpinners/LoadingSpinner';
 import { ISearchResult } from '../../../../types/WeatherTypes/WeatherTypes';
 
 interface SearchResultsListProps {
@@ -12,7 +12,7 @@ const SearchResultsList = ({ results, onSelectResult, isLoading }: SearchResults
   const { t } = useTranslation();
 
   return (
-    <div className="absolute bg-white w-full border border-borderPrimary rounded-md top-full mt-2">
+    <div className="absolute bg-white w-full border border-borderPrimary rounded-2xl top-full mt-2 overflow-hidden">
       {isLoading ? (
         <div className="flex items-center justify-center py-2">
           <LoadingSpinner />
@@ -23,13 +23,19 @@ const SearchResultsList = ({ results, onSelectResult, isLoading }: SearchResults
             results.map((result, index) => {
               const isFirst = index === 0;
 
+              const namePart = result.name;
+              const regionPart = !!result.region ? `, ${result.region}` : '';
+              const countryPart = !!result.country ? `, ${result.country}` : '';
+
               return (
                 <li
                   key={result.id}
                   onClick={() => onSelectResult(result)}
-                  className={`px-4 py-4 text-sm ${!isFirst && 'border-t border-t-borderPrimary'}`}
+                  className={`px-4 py-4 text-sm cursor-pointer hover:bg-slate-100 ${!isFirst && 'border-t border-t-borderPrimary'}`}
                 >
-                  {result.name}
+                  <span className=" font-semibold">{namePart}</span>
+                  {regionPart}
+                  {countryPart}
                 </li>
               );
             })}

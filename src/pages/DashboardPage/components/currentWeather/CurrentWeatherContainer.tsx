@@ -1,4 +1,5 @@
-import LoadingSpinner from '../../../../components/loadingSpinners/LoadingSpinner';
+import { useTranslation } from 'react-i18next';
+import LoadingSpinner from '../../../../components/common/loadingSpinners/LoadingSpinner';
 import { ICurrentWeather } from '../../../../types/WeatherTypes/WeatherTypes';
 import CurrentWeather from './components/CurrentWeatherView';
 
@@ -15,6 +16,8 @@ const CurrentWeatherContainer = ({
   isError,
   errorMessage,
 }: CurrentWeatherContainerProps) => {
+  const { t } = useTranslation();
+
   if (isError) {
     return <div className="flex justify-center items-center h-36">{errorMessage}</div>;
   }
@@ -27,7 +30,15 @@ const CurrentWeatherContainer = ({
     );
   }
 
-  return !!currentWeather && <CurrentWeather currentWeather={currentWeather} />;
+  if (!currentWeather) {
+    return (
+      <div className="mt-6">
+        <p className=" text-center">{t('dashboard.currentWeather.noDataMessage')}</p>
+      </div>
+    );
+  }
+
+  return <CurrentWeather currentWeather={currentWeather} />;
 };
 
 export default CurrentWeatherContainer;
