@@ -23,5 +23,8 @@
     "THURSDAY": "Czwartek",
     "FRIDAY": "Piątek",
     "SATURDAY": "Sobota"
+  },
+  "errorMessages": {
+    "general": "Something went wrong"
   }
 }

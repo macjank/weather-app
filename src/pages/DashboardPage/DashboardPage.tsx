@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useCurrentWeather } from '../../hooks/api/useCurrentWeather';
 import { LocalStorageValues } from '../../types/LocalStorageValues';
 import { ISearchResult } from '../../types/WeatherTypes/WeatherTypes';
+import CurrentWeatherContainer from './components/currentWeather/CurrentWeatherContainer';
 import PrevSearches from './components/prevSearches/PrevSearches';
 import Search from './components/search/Search';
 import { usePrevSelectedPlaces } from './hooks/usePrevSelectedPlaces';
@@ -45,6 +46,12 @@ const DashboardPage = () => {
       {!!prevSelectedPlaces.length && (
         <PrevSearches prevSearches={prevSelectedPlaces} onSelect={handleChangeSelectedPlace} />
       )}
+      <CurrentWeatherContainer
+        currentWeather={currentWeather}
+        isLoading={isLoading}
+        isError={isError}
+        errorMessage={errorMessage}
+      />
     </div>
   );
 };

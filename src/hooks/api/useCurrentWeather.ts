@@ -1,9 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
+import { AxiosError } from 'axios';
 import { useTranslation } from 'react-i18next';
 import { defaultLang } from '../../i18n';
 import { QueryKeys } from '../../static/QueryKeys';
 import { api } from '../../static/api';
 import { ICurrentWeather } from '../../types/WeatherTypes/WeatherTypes';
+import { getApiErrorMessage } from '../../utils/getApiErrorMessage.ts/getApiErrorMessage.ts';
 import { useAxiosInstance } from '../axios/useAxiosInstance';
 
 interface ApiCurrentWeather {
@@ -32,6 +34,7 @@ interface ApiCurrentWeather {
 }
 
 export const useCurrentWeather = ({ placeId, enabled }: { placeId: number; enabled: boolean }) => {
+  const { t } = useTranslation();
   const { axiosInstance } = useAxiosInstance();
 
   const { i18n } = useTranslation();
@@ -74,5 +77,7 @@ export const useCurrentWeather = ({ placeId, enabled }: { placeId: number; enabl
       }
     : undefined;
 
-  return { currentWeather: iCurrentWeather, isLoading, isError, error };
+  const errorMessage = isError ? getApiErrorMessage(error as AxiosError) ?? t('errorMessages.general') : '';
+
+  return { currentWeather: iCurrentWeather, isLoading, isError, errorMessage };
 };
