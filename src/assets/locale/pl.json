@@ -4,6 +4,9 @@
       "placeholder": "Szukaj",
       "noResults": "Brak wyników"
     },
+    "prevSearches": {
+      "title": "Ostatnie wyszukiwania"
+    },
     "currentWeather": {
       "chart": {
         "temperature": "Temperatura",
