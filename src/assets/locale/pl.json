@@ -3,6 +3,13 @@
     "search": {
       "placeholder": "Szukaj",
       "noResults": "Brak wyników"
+    },
+    "currentWeather": {
+      "chart": {
+        "temperature": "Temperatura",
+        "humidity": "Wilgotność",
+        "windSpeed": "Prędkość wiatru"
+      }
     }
   },
   "weekdays": {
