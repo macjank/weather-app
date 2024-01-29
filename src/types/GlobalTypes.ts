@@ -1,7 +1,7 @@
 import { TypeFromConstObject } from './HelperTypes';
 
 export const Langs = {
-  PL: 'pl',
+  EN: 'en',
 } as const;
 
 export type Lang = TypeFromConstObject<typeof Langs>;

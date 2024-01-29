@@ -1,10 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
-import { useTranslation } from 'react-i18next';
-import { defaultLang } from '../../i18n';
 import { QueryKeys } from '../../static/QueryKeys';
 import { api } from '../../static/api';
 import { ISearchResult } from '../../types/WeatherTypes/WeatherTypes';
-import { useAxiosInstance } from '../axios/useAxiosInstance';
+import { useHttpClient } from '../httpClient/useHttpClient';
 
 const QUERY_MIN_LENGTH = 3;
 
@@ -19,13 +17,11 @@ interface ApiSearchResult {
 }
 
 export const useWeatherSearch = ({ searchQuery }: { searchQuery: string }) => {
-  const { axiosInstance } = useAxiosInstance();
-
-  const { i18n } = useTranslation();
+  const { httpClient } = useHttpClient();
 
   const { data, isLoading, isError, error } = useQuery({
     queryKey: [QueryKeys.WEATHER_SEARCH, searchQuery],
-    queryFn: () => axiosInstance.get(api.endpoints.search({ searchQuery, lang: i18n.resolvedLanguage ?? defaultLang })),
+    queryFn: () => httpClient.get(api.endpoints.search({ searchQuery })),
     enabled: searchQuery.length >= QUERY_MIN_LENGTH,
   });
 

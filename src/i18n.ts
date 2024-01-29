@@ -1,10 +1,10 @@
 import i18n from 'i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import { initReactI18next } from 'react-i18next';
-import pl from './assets/locale/pl.json';
+import en from './assets/locale/en.json';
 import { Langs } from './types/GlobalTypes';
 
-export const defaultLang = Langs.PL;
+export const defaultLang = Langs.EN;
 
 declare module 'i18next' {
   interface CustomTypeOptions {
@@ -23,8 +23,8 @@ i18n
       escapeValue: false,
     },
     resources: {
-      pl: {
-        translation: pl,
+      en: {
+        translation: en,
       },
     },
   });

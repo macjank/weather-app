@@ -1,12 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 import { useTranslation } from 'react-i18next';
-import { defaultLang } from '../../i18n';
 import { QueryKeys } from '../../static/QueryKeys';
 import { api } from '../../static/api';
 import { ICurrentWeather } from '../../types/WeatherTypes/WeatherTypes';
 import { getApiErrorMessage } from '../../utils/getApiErrorMessage.ts/getApiErrorMessage.ts';
-import { useAxiosInstance } from '../axios/useAxiosInstance';
+import { useHttpClient } from '../httpClient/useHttpClient';
 
 interface ApiCurrentWeather {
   location: {
@@ -35,14 +34,11 @@ interface ApiCurrentWeather {
 
 export const useCurrentWeather = ({ placeId, enabled }: { placeId: number; enabled: boolean }) => {
   const { t } = useTranslation();
-  const { axiosInstance } = useAxiosInstance();
-
-  const { i18n } = useTranslation();
+  const { httpClient } = useHttpClient();
 
   const { data, isLoading, isError, error } = useQuery({
     queryKey: [QueryKeys.CURRENT_WEATHER, placeId],
-    queryFn: () =>
-      axiosInstance.get(api.endpoints.currentWeather({ placeId, lang: i18n.resolvedLanguage ?? defaultLang })),
+    queryFn: () => httpClient.get(api.endpoints.currentWeather({ placeId })),
     enabled,
   });
 
