@@ -42,14 +42,13 @@ const DashboardPage = () => {
     });
   };
 
+  const displayPrevSearches = !!prevSelectedPlaces.length;
+
   return (
     <div>
       <h1 className="text-center text-textPrimary mt-4 mb-6">{t('dashboard.title')}</h1>
       <Search onSelectPlace={handleChangeSelectedPlace} />
-      {!!prevSelectedPlaces.length && (
-        <PrevSearches prevSearches={prevSelectedPlaces} onSelect={handleChangeSelectedPlace} />
-      )}
-
+      {displayPrevSearches && <PrevSearches prevSearches={prevSelectedPlaces} onSelect={handleChangeSelectedPlace} />}
       <CurrentWeatherContainer
         currentWeather={currentWeather}
         isLoading={isLoading}

@@ -46,7 +46,8 @@
   h5,
   h6,
   p,
-  span {
+  span,
+  button {
     @apply text-textPrimary;
   }
 }

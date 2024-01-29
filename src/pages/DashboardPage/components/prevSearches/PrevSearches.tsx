@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import SecondaryButton from '../../../../components/common/SecondaryButton';
+import SecondaryButton from '../../../../components/common/buttons/SecondaryButton';
 import { ISearchResult } from '../../../../types/WeatherTypes/WeatherTypes';
 
 interface PrevSearchesProps {

@@ -1,7 +1,8 @@
 import { useTranslation } from 'react-i18next';
 import LoadingSpinner from '../../../../components/common/loadingSpinners/LoadingSpinner';
 import { ICurrentWeather } from '../../../../types/WeatherTypes/WeatherTypes';
-import CurrentWeather from './components/CurrentWeatherView';
+import CurrentWeatherChart from './components/CurrentWeatherChart';
+import CurrentWeatherInfo from './components/CurrentWeatherInfo';
 
 interface CurrentWeatherContainerProps {
   currentWeather: ICurrentWeather | undefined;
@@ -38,7 +39,12 @@ const CurrentWeatherContainer = ({
     );
   }
 
-  return <CurrentWeather currentWeather={currentWeather} />;
+  return (
+    <>
+      <CurrentWeatherInfo currentWeather={currentWeather} />;
+      <CurrentWeatherChart currentWeather={currentWeather} />
+    </>
+  );
 };
 
 export default CurrentWeatherContainer;

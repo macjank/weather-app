@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import LoadingSpinner from '../../../../components/common/loadingSpinners/LoadingSpinner';
 import { ISearchResult } from '../../../../types/WeatherTypes/WeatherTypes';
+import SearchResultsSingleItem from './SearchResultsSingleItem';
 
 interface SearchResultsListProps {
   results: ISearchResult[];
@@ -20,25 +21,9 @@ const SearchResultsList = ({ results, onSelectResult, isLoading }: SearchResults
       ) : (
         <ul>
           {!!results.length &&
-            results.map((result, index) => {
-              const isFirst = index === 0;
-
-              const namePart = result.name;
-              const regionPart = !!result.region ? `, ${result.region}` : '';
-              const countryPart = !!result.country ? `, ${result.country}` : '';
-
-              return (
-                <li
-                  key={result.id}
-                  onClick={() => onSelectResult(result)}
-                  className={`px-4 py-4 text-sm cursor-pointer hover:bg-slate-100 ${!isFirst && 'border-t border-t-borderPrimary'}`}
-                >
-                  <span className=" font-semibold">{namePart}</span>
-                  {regionPart}
-                  {countryPart}
-                </li>
-              );
-            })}
+            results.map((result, index) => (
+              <SearchResultsSingleItem key={result.id} result={result} onSelect={onSelectResult} index={index} />
+            ))}
           {!results.length && (
             <div>
               <p className="px-4 py-4 text-sm">{t('dashboard.search.noResults')}</p>
