@@ -92,7 +92,7 @@ const CurrentWeatherChart = ({ currentWeather }: CurrentWeatherChartProps) => {
       plugins={[
         {
           id: 'shadow-plugin',
-          beforeDatasetDraw(chart) {
+          beforeRender(chart) {
             chart.ctx.shadowColor = 'rgba(0, 0, 0, 0.9)';
             chart.ctx.shadowBlur = 40;
           },
