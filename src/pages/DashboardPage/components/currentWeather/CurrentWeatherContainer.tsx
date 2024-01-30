@@ -41,7 +41,7 @@ const CurrentWeatherContainer = ({
 
   return (
     <>
-      <CurrentWeatherInfo currentWeather={currentWeather} />;
+      <CurrentWeatherInfo currentWeather={currentWeather} />
       <CurrentWeatherChart currentWeather={currentWeather} />
     </>
   );
