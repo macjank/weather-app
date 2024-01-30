@@ -3,7 +3,6 @@ import { Radar } from 'react-chartjs-2';
 import { useTranslation } from 'react-i18next';
 import { ICurrentWeather } from '../../../../../types/WeatherTypes/WeatherTypes';
 import { CHART_MAX_SCALE, CHART_MIN_SCALE, currentWeatherRange } from '../../../static/currentWeatherChartStatic';
-import { generateChartBackground } from '../../../utils/generateChartBackground';
 import { scaleToRange } from '../../../utils/scaleToRange';
 
 ChartJS.register(RadialLinearScale, PointElement, LineElement, Filler, Tooltip, Legend);
@@ -50,7 +49,6 @@ const CurrentWeatherChart = ({ currentWeather }: CurrentWeatherChartProps) => {
             data: [scaledTemperature, scaledHumidity, scaledWindSpeed],
             backgroundColor: 'rgba(0, 21, 207, 0.71)',
           },
-          ...generateChartBackground(),
         ],
       }}
       options={{
@@ -91,6 +89,15 @@ const CurrentWeatherChart = ({ currentWeather }: CurrentWeatherChartProps) => {
           },
         },
       }}
+      plugins={[
+        {
+          id: 'shadow-plugin',
+          beforeDatasetDraw(chart) {
+            chart.ctx.shadowColor = 'rgba(0, 0, 0, 0.9)';
+            chart.ctx.shadowBlur = 40;
+          },
+        },
+      ]}
     />
   );
 };

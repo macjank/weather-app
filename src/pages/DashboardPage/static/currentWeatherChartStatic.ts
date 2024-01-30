@@ -6,16 +6,3 @@ export const currentWeatherRange = {
   humidityRange: { min: 0, max: 100 },
   windSpeedRange: { min: 0, max: 80 },
 };
-
-export const chartBackgroundColors = [
-  '#ffdad4',
-  '#ffdad4',
-  '#fde2de',
-  '#fde2de',
-  '#f9e6e2',
-  '#f9e6e2',
-  '#fcefed',
-  '#fcefed',
-  '#fef8f7',
-  '#fef8f7',
-];
